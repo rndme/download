@@ -15,6 +15,45 @@ Parameters
 * **strFileName** - The name of the file to be created. Note that older browsers (like FF3.5, Ch5) don't honor the file name you provide, instead they automatically name the downloaded file.
 * **strMimeType** - The MIME content-type of the file to download. While optional, it helps the browser present friendlier information about the download to the user, encouraging them to accept the download.
 
+
+
+Example Usage
+---------
+
+
+### Plain Text
+#### text string
+    download("hello world", "dlText.txt", "text/plain");
+
+#### text dataURL
+    download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
+
+#### text blob
+    download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
+
+#### text UInt8 Array
+    var str= "hello world",	arr= new Uint8Array(str.length);
+    str.split("").forEach(function(a,b){
+   	arr[b]=a.charCodeAt();
+    });
+
+    download( arr, "textUInt8Array.txt", "text/plain" );
+
+### HTML
+#### html string
+    download(document.body.outerHTML, "dlHTML.html", "text/html");
+
+#### html Blob
+    download(new Blob(["hello world".bold()]), "dlHtmlBlob.html", "text/html");
+
+#### ajax callback
+    $.ajax({
+    		url: "/download.html", 
+    		success: download.bind(true, "text/html", "dlAjaxCallback.html")
+    });
+
+
+
 Compatibility
 ---------
 download.js works with a wide range of devices and browsers.
