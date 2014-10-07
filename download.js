@@ -99,7 +99,7 @@ function download(data, strFileName, strMimeType) {
 		return navigator.msSaveBlob(blob, fn);
 	} 	
 	
-	if(self.URL && typeof safari ==="undefined" ){ // simple fast and modern way using Blob and URL:
+	if(self.URL){ // simple fast and modern way using Blob and URL:
 		saver(self.URL.createObjectURL(blob), true);
 	}else{
 		// handle non-Blob()+non-URL browsers:
