@@ -1,7 +1,9 @@
-//download.js v3.0, by dandavis; 2008-2014. [CCBY2] see http://danml.com/download.html for tests/usage
+//download.js v3.1, by dandavis; 2008-2014. [CCBY2] see http://danml.com/download.html for tests/usage
 // v1 landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 // v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
-// v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support
+// v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
+
+// https://github.com/rndme/download
 
 // data can be a string, Blob, File, or dataURL
 function download(data, strFileName, strMimeType) {
@@ -27,7 +29,8 @@ function download(data, strFileName, strMimeType) {
 	}
 	
 	
-	
+
+
 	//go ahead and download dataURLs right away
 	if(String(x).match(/^data\:[\w+\-]+\/[\w+\-]+[,;]/)){
 		return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
@@ -56,7 +59,6 @@ function download(data, strFileName, strMimeType) {
 	  
 	function saver(url, winMode){
 		
-		
 		if ('download' in a) { //html5 A[download] 			
 			a.href = url;
 			a.setAttribute("download", fn);
@@ -69,24 +71,35 @@ function download(data, strFileName, strMimeType) {
 			}, 66);
 			return true;
 		}
+
+		if(typeof safari !=="undefined" ){ // handle non-a[download] safari as best we can:
+			url="data:"+url.replace(/^data:([\w\/\-\+]+)/, u);
+			if(!window.open(url)){ // popup blocked, offer direct download: 
+				if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
+			}
+			return true;
+		}
 		
 		//do iframe dataURL download (old ch+FF):
 		var f = D.createElement("iframe");
 		D.body.appendChild(f);
+		
 		if(!winMode){ // force a mime that will download:
 			url="data:"+url.replace(/^data:([\w\/\-\+]+)/, u);
 		}
-		f.src = url;
+		f.src=url;
 		setTimeout(function(){ D.body.removeChild(f); }, 333);
 		
 	}//end saver 
 		
 
+
+
 	if (navigator.msSaveBlob) { // IE10+ : (has Blob, but not a[download] or URL)
 		return navigator.msSaveBlob(blob, fn);
 	} 	
 	
-	if(self.URL){ // simple fast and modern way using Blob and URL:
+	if(self.URL && typeof safari ==="undefined" ){ // simple fast and modern way using Blob and URL:
 		saver(self.URL.createObjectURL(blob), true);
 	}else{
 		// handle non-Blob()+non-URL browsers:
