@@ -11,7 +11,7 @@ download(data, strFileName, strMimeType);
 
 Parameters
 ---------
-* **data** - The Blob, File, String, or dataURL containing the soon-to-ba File's contents.
+* **data** - The Blob, File, String, or dataURL containing the soon-to-be File's contents.
 * **strFileName** - The name of the file to be created. Note that older browsers (like FF3.5, Ch5) don't honor the file name you provide, instead they automatically name the downloaded file.
 * **strMimeType** - The MIME content-type of the file to download. While optional, it helps the browser present friendlier information about the download to the user, encouraging them to accept the download.
 
@@ -63,7 +63,7 @@ You can expect it to work for the vast majority of your users, with some common-
 * Devices without file systems like iPhone, iPad, Wii, et al. have nowhere to save the file to, sorry.
 * Android support starts at 4.2 for the built-in browser, though chrome 36+ and firefox 20+ on android 2.3+ work well.
 * Devices without Blob support won't be able to download Blobs or TypedArrays
-* Legacy devices a[download] support can only download a few hundred kilobytes of data, and can't give the file a custom name.
+* Legacy devices (no a[download]) support can only download a few hundred kilobytes of data, and can't give the file a custom name.
 * Devices without window.URL support can only download a couple megabytes of data
 * IE versions of 9 and before are NOT supported because the don't support a[download] or dataURL frame locations.
 
