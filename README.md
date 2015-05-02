@@ -7,7 +7,15 @@ The download() function is used to trigger a file download from JavaScript. It s
 
 Syntax
 ---------
-download(data, strFileName, strMimeType);
+
+#### Simple global `download` function via `<script>` include
+    download(data, strFileName, strMimeType);
+
+#### Included via AMD
+    require(['path/to/file'], function(download) {
+        download(data, strFileName, strMimeType);
+    });
+
 
 Parameters
 ---------
@@ -48,7 +56,7 @@ Example Usage
 
 #### ajax callback
     $.ajax({
-    		url: "/download.html", 
+    		url: "/download.html",
     		success: download.bind(true, "text/html", "dlAjaxCallback.html")
     });
 
