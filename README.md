@@ -30,31 +30,32 @@ Example Usage
 
 
 ### Plain Text
-#### text string
+#### text string  -  [live demo](http://pagedemos.com/sxks39b72aqb/1)
     download("hello world", "dlText.txt", "text/plain");
 
-#### text dataURL
+
+#### text dataURL  -  [live demo](http://pagedemos.com/sxks39b72aqb/2)
     download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
 
-#### text blob
+#### text blob  -  [live demo](http://pagedemos.com/sxks39b72aqb/3)
     download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
 
-#### text UInt8 Array
+#### text UInt8 Array -  [live demo](http://pagedemos.com/sxks39b72aqb/4)
     var str= "hello world",	arr= new Uint8Array(str.length);
     str.split("").forEach(function(a,b){
-   	arr[b]=a.charCodeAt();
+   	  arr[b]=a.charCodeAt();
     });
 
     download( arr, "textUInt8Array.txt", "text/plain" );
 
 ### HTML
-#### html string
+#### html string -  [live demo](http://pagedemos.com/sxks39b72aqb/5)
     download(document.body.outerHTML, "dlHTML.html", "text/html");
 
-#### html Blob
+#### html Blob -  [live demo](http://pagedemos.com/sxks39b72aqb/6)
     download(new Blob(["hello world".bold()]), "dlHtmlBlob.html", "text/html");
 
-#### ajax callback
+#### ajax callback -  [live demo](http://pagedemos.com/sxks39b72aqb/7)
     $.ajax({
     		url: "/download.html",
     		success: download.bind(true, "text/html", "dlAjaxCallback.html")
