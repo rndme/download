@@ -1,0 +1,20 @@
+{
+  "name": "download",
+  "main": "download.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/rndme/download",
+  "description": "file downloading using client-side javascript",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
