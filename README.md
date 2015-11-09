@@ -8,6 +8,10 @@ The download() function is used to trigger a file download from JavaScript. It s
 Syntax
 ---------
 
+#### Via NPM `npm install downloadjs`
+    require("downloadjs")(data, strFileName, strMimeType);
+
+
 #### Simple global `download` function via `<script>` include
     download(data, strFileName, strMimeType);
 
