@@ -28,7 +28,7 @@
 			x = data,
 			D = document,
 			a = D.createElement("a"),
-			z = function(a){return String(a);},
+			z = function(b){return String(b);},
 			B = (self.Blob || self.MozBlob || self.WebKitBlob || z);
 			B=B.call ? B.bind(self) : Blob ;
 			var fn = strFileName || "download",
