@@ -22,15 +22,12 @@
 
 	return function download(data, strFileName, strMimeType, withA, withIFrame) {
 
-		var aProvided = (withA !== undefined && withA !== null);
-		var iFrameProvided = (withIFrame !== undefined && withIFrame !== null);
-
 		var self = window, // this script is only for browsers anyway...
 			u = "application/octet-stream", // this default mime also triggers iframe downloads
 			m = strMimeType || u,
 			x = data,
 			D = document,
-			a = aProvided ? withA : D.createElement("a"),
+			a = withA || D.createElement("a"),
 			z = function(b){return String(b);},
 			B = (self.Blob || self.MozBlob || self.WebKitBlob || z);
 			B=B.call ? B.bind(self) : Blob ;
@@ -79,12 +76,12 @@
 				a.href = url;
 				a.setAttribute("download", fn);
 				a.innerHTML = "downloading...";
-				if (!aProvided) {
+				if (!withA) {
 					D.body.appendChild(a);
 				}
 				setTimeout(function() {
 					a.click();
-					if (!aProvided) {
+					if (!withA) {
 						D.body.removeChild(a);
 					}
 					if(winMode===true){setTimeout(function(){ self.URL.revokeObjectURL(a.href);}, 250 );}
@@ -101,8 +98,8 @@
 			}
 
 			//do iframe dataURL download (old ch+FF):
-			var f = iFrameProvided ? withIFrame : D.createElement("iframe");
-			if (!iFrameProvided) {
+			var f = withIFrame || D.createElement("iframe");
+			if (!withIFrame) {
 				D.body.appendChild(f);
 			}
 
@@ -110,7 +107,7 @@
 				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, u);
 			}
 			f.src=url;
-			if (!iFrameProvided) {
+			if (!withIFrame) {
 				setTimeout(function(){ D.body.removeChild(f); }, 333);
 			}
 
