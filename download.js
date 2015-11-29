@@ -76,6 +76,7 @@
 			if ('download' in a) { //html5 A[download]
 				a.href = url;
 				a.setAttribute("download", fn);
+				a.className = "download-js-link";
 				a.innerHTML = "downloading...";
 				D.body.appendChild(a);
 				setTimeout(function() {
