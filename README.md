@@ -39,12 +39,15 @@ Example Usage
 #### text string  -  [live demo](http://pagedemos.com/sxks39b72aqb/1)
     download("hello world", "dlText.txt", "text/plain");
 
-
 #### text dataURL  -  [live demo](http://pagedemos.com/sxks39b72aqb/2)
     download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
 
 #### text blob  -  [live demo](http://pagedemos.com/sxks39b72aqb/3)
     download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
+
+#### text url - [live demo](http://pagedemos.com/pz6hkyqutjtw/)
+    download("/robots.txt");
+
 
 #### text UInt8 Array -  [live demo](http://pagedemos.com/sxks39b72aqb/4)
     var str= "hello world",	arr= new Uint8Array(str.length);
@@ -67,7 +70,15 @@ Example Usage
     		success: download.bind(true, "text/html", "dlAjaxCallback.html")
     });
 
+### Binary Files
+#### image from URL  -  [live demo](http://pagedemos.com/yvvmxbjrwq7u/)
+    download("/diff6.png");
 
+#### Image via ajax for custom filename - [live demo](http://pagedemos.com/dxa55tv3aubb/)
+    var x=new XMLHttpRequest();
+    x.open( "GET", "/diff6.png" , true);
+    x.onload= download.bind(true, "image/png", "awesomesauce.png");
+    x.send();
 
 Compatibility
 ---------
