@@ -3,7 +3,9 @@ download
 
 Summary
 ---------
-The download() function is used to trigger a file download from JavaScript. It specifies the contents and name of a new file placed in the browser's download directory. The input can be a URL, String, Blob, or Typed Array of data, or via a dataURL representing the file's data as base64 or url-encoded string. No matter the input format, download() saves a file using the specified file name and mime information in the same manner as a server using a Content-Disposition HTTP header.
+The download() function is used to trigger a file download from JavaScript. 
+
+It specifies the contents and name of a new file placed in the browser's download directory. The input can be a URL, String, Blob, or Typed Array of data, or via a dataURL representing the file's data as base64 or url-encoded string. No matter the input format, download() saves a file using the specified file name and mime information in the same manner as a server using a Content-Disposition HTTP header.
 
 Syntax
 ---------
