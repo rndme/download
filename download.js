@@ -1,8 +1,10 @@
-//download.js v4.0, by dandavis; 2008-2015. [CCBY2] see http://danml.com/download.html for tests/usage
+
+//download.js v4.1, by dandavis; 2008-2015. [CCBY2] see http://danml.com/download.html for tests/usage
 // v1 landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 // v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 // v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
 // v4 adds AMD/UMD, commonJS, and plain browser support
+// v4.1 adds url download capability via solo URL argument (same domain/CORS only)
 // https://github.com/rndme/download
 
 (function (root, factory) {
@@ -26,15 +28,17 @@
 			u = "application/octet-stream", // this default mime also triggers iframe downloads
 			m = strMimeType || u,
 			x = data,
+			url = !strFileName && !strMimeType && x,
 			D = document,
 			a = D.createElement("a"),
 			z = function(a){return String(a);},
-			B = (self.Blob || self.MozBlob || self.WebKitBlob || z);
-			B=B.call ? B.bind(self) : Blob ;
-			var fn = strFileName || "download",
+			B = (self.Blob || self.MozBlob || self.WebKitBlob || z),
+			fn = strFileName || "download",
 			blob,
-			fr;
-
+			fr,
+			ajax;
+			B= B.call ? B.bind(self) : Blob ;
+	  
 
 		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
 			x=[x, m];
@@ -43,10 +47,25 @@
 		}
 
 
+		if(url && url.length< 2048){ 
+			fn = url.split("/").pop().split("?")[0];
+			a.href = url; // assign href prop to temp anchor
+		  	if(a.href.indexOf(url) !== -1){ // if the browser determines that it's a potentially valid url path:
+        		var ajax=new XMLHttpRequest();
+        		ajax.open( "GET", url, true);
+        		ajax.responseType = 'blob';
+        		ajax.onload= function(e){ 
+				  download(e.target.response, fn, u);
+				};
+        		ajax.send();
+			    return ajax;
+			} // end if valid url?
+		} // end if url?
+
 
 
 		//go ahead and download dataURLs right away
-		if(String(x).match(/^data\:[\w+\-]+\/[\w+\-]+[,;]/)){
+		if(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(x)){
 			return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
 				navigator.msSaveBlob(d2b(x), fn) :
 				saver(x) ; // everyone else can save dataURLs un-processed
