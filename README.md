@@ -3,7 +3,7 @@ download
 
 Summary
 ---------
-The download() function is used to trigger a file download from JavaScript. It specifies the contents and name of a new file placed in the browser's download directory. The input can be a String, Blob, or Typed Array of data, or via a dataURL representing the file's data as base64 or url-encoded string. No matter the input format, download() saves a file using the specified file name and mime information in the same manner as a server using a Content-Disposition HTTP header.
+The download() function is used to trigger a file download from JavaScript. It specifies the contents and name of a new file placed in the browser's download directory. The input can be a URL, String, Blob, or Typed Array of data, or via a dataURL representing the file's data as base64 or url-encoded string. No matter the input format, download() saves a file using the specified file name and mime information in the same manner as a server using a Content-Disposition HTTP header.
 
 Syntax
 ---------
@@ -94,10 +94,11 @@ You can expect it to work for the vast majority of your users, with some common-
 * IE versions of 9 and before are NOT supported because the don't support a[download] or dataURL frame locations.
 
 
-Change Log (v4)
+Change Log (v4.1)
 ---------
 * 2008 :: landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 * 2012 :: added named files via a[download], msSaveBlob() for IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 * 2014 :: added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support
 * 2015 :: converted to amd/commonJS module with browser-friendly fallback
+* 2015 :: 4.1 added direct URL downloading via a single URL argument.
 * 20XX :: ???? Considering Zip, Tar, and other multi-file outputs, Blob.prototype.download option, and more, stay tuned folks.
