@@ -76,7 +76,7 @@ Example Usage
 #### image from URL  -  [live demo](http://pagedemos.com/yvvmxbjrwq7u/)
     download("/diff6.png");
 
-#### Image via ajax for custom filename - [live demo](http://pagedemos.com/dxa55tv3aubb/)
+#### Image via ajax for custom filename - [live demo](http://pagedemos.com/v2848zfgwrju/)
 	var x=new XMLHttpRequest();
 	x.open( "GET", "/diff6.png" , true);
 	x.responseType="blob";
