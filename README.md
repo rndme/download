@@ -77,10 +77,12 @@ Example Usage
     download("/diff6.png");
 
 #### Image via ajax for custom filename - [live demo](http://pagedemos.com/dxa55tv3aubb/)
-    var x=new XMLHttpRequest();
-    x.open( "GET", "/diff6.png" , true);
-    x.onload= download.bind(true, "image/png", "awesomesauce.png");
-    x.send();
+	var x=new XMLHttpRequest();
+	x.open( "GET", "/diff6.png" , true);
+	x.responseType="blob";
+	x.onload= function(e){download(e.target.response, "awesomesauce.png", "image/png");};
+	x.send();
+
 
 Compatibility
 ---------
@@ -94,6 +96,16 @@ You can expect it to work for the vast majority of your users, with some common-
 * Legacy devices (no a[download]) support can only download a few hundred kilobytes of data, and can't give the file a custom name.
 * Devices without window.URL support can only download a couple megabytes of data
 * IE versions of 9 and before are NOT supported because the don't support a[download] or dataURL frame locations.
+
+
+FAQ
+---------
+
+ * `Can I tell when a download is done/canceled?` No.
+ * `How can I style the temporary download link?` Define CSS class styles for `.download-js-link`.
+ * `What's up with Safari?` I don't know either but pull requests that improve the situation are welcome.
+ * `Why is my binary file corrupted?` Likely: an incorrect MIME or using jQuery ajax, which has no bin support.
+ * `How big of files work?` Depends, try yourself: [File Echo Demo](http://pagedemos.com/gqs6hbmjcpem/)... I do a 1GB dl routinely on a thinkpad...
 
 
 Change Log (v4.1)
