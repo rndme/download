@@ -67,10 +67,13 @@ Example Usage
     download(new Blob(["hello world".bold()]), "dlHtmlBlob.html", "text/html");
 
 #### ajax callback -  [live demo](http://pagedemos.com/sxks39b72aqb/7)
+(note that callback mode won't work on vanilla ajax or with binary files)
+   
     $.ajax({
     		url: "/download.html",
     		success: download.bind(true, "text/html", "dlAjaxCallback.html")
     });
+
 
 ### Binary Files
 #### image from URL  -  [live demo](http://pagedemos.com/yvvmxbjrwq7u/)
