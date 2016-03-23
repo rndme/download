@@ -1,31 +1,31 @@
-download
+# download
 ========
 
-Summary
+## Summary
 ---------
 The download() function is used to trigger a file download from JavaScript. 
 
 It specifies the contents and name of a new file placed in the browser's download directory. The input can be a URL, String, Blob, or Typed Array of data, or via a dataURL representing the file's data as base64 or url-encoded string. No matter the input format, download() saves a file using the specified file name and mime information in the same manner as a server using a Content-Disposition HTTP header.
 
-Syntax
+## Getting and Using
 ---------
 
-#### Via NPM/Bower 
-`npm install downloadjs`  
+### Via NPM/Bower 
+`npm install downloadjs`  <br />
 `bower install downloadjs`
 
 `require("downloadjs")(data, strFileName, strMimeType);`
 
-#### Simple global `download` function via `<script>` include
+### Simple global `download` function via `<script>` include
     download(data, strFileName, strMimeType);
 
-#### Included via AMD
+### Included via AMD
     require(['path/to/file'], function(download) {
         download(data, strFileName, strMimeType);
     });
 
 
-Parameters
+### Parameters
 ---------
 * **data** - The Blob, File, String, or dataURL containing the soon-to-be File's contents.
 * **strFileName** - The name of the file to be created. Note that older browsers (like FF3.5, Ch5) don't honor the file name you provide, instead they automatically name the downloaded file.
@@ -33,7 +33,7 @@ Parameters
 
 
 
-Example Usage
+## Example Usage
 ---------
 
 
@@ -87,7 +87,7 @@ Example Usage
 	x.send();
 
 
-Compatibility
+## Compatibility
 ---------
 download.js works with a wide range of devices and browsers.
 
@@ -101,7 +101,7 @@ You can expect it to work for the vast majority of your users, with some common-
 * IE versions of 9 and before are NOT supported because the don't support a[download] or dataURL frame locations.
 
 
-FAQ
+## FAQ
 ---------
 
  * `Can I tell when a download is done/canceled?` No.
@@ -111,7 +111,7 @@ FAQ
  * `How big of files work?` Depends, try yourself: [File Echo Demo](http://pagedemos.com/gqs6hbmjcpem/)... I do a 1GB dl routinely on a thinkpad...
 
 
-Change Log (v4.1)
+## Change Log (v4.1)
 ---------
 * 2008 :: landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 * 2012 :: added named files via a[download], msSaveBlob() for IE (10+) support, and window.URL support for larger+faster saves than dataURLs
