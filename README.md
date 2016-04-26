@@ -60,8 +60,8 @@ It specifies the contents and name of a new file placed in the browser's downloa
     download( arr, "textUInt8Array.txt", "text/plain" );
 
 ### HTML
-#### html string -  [live demo](http://pagedemos.com/xg6krr8y3uc7/output/)
-    download(document.body.outerHTML, "dlHTML.html", "text/html");
+#### html string -  [live demo](http://pagedemos.com/k7rwq7msu3eb/output/)
+    download(document.documentElement.outerHTML, "dlHTML.html", "text/html");
 
 #### html Blob -  [live demo](http://pagedemos.com/bxehm2fdf3g4/output/)
     download(new Blob(["hello world".bold()]), "dlHtmlBlob.html", "text/html");
