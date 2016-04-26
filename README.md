@@ -38,20 +38,20 @@ It specifies the contents and name of a new file placed in the browser's downloa
 
 
 ### Plain Text
-#### text string  -  [live demo](http://pagedemos.com/sxks39b72aqb/1)
+#### text string  -  [live demo](http://pagedemos.com/hw24em95rsfq/output/)
     download("hello world", "dlText.txt", "text/plain");
 
-#### text dataURL  -  [live demo](http://pagedemos.com/sxks39b72aqb/2)
+#### text dataURL  -  [live demo](http://pagedemos.com/r9ywm98s6b29/output/)
     download("data:text/plain,hello%20world", "dlDataUrlText.txt", "text/plain");
 
-#### text blob  -  [live demo](http://pagedemos.com/sxks39b72aqb/3)
+#### text blob  -  [live demo](http://pagedemos.com/ckcah2vp8kza/output/)
     download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
 
-#### text url - [live demo](http://pagedemos.com/pz6hkyqutjtw/)
+#### text url - [live demo](http://pagedemos.com/pz6hkyqutjtw/output/)
     download("/robots.txt");
 
 
-#### text UInt8 Array -  [live demo](http://pagedemos.com/sxks39b72aqb/4)
+#### text UInt8 Array -  [live demo](http://pagedemos.com/zuyk46wbkktq/output/)
     var str= "hello world",	arr= new Uint8Array(str.length);
     str.split("").forEach(function(a,b){
    	  arr[b]=a.charCodeAt();
@@ -60,13 +60,13 @@ It specifies the contents and name of a new file placed in the browser's downloa
     download( arr, "textUInt8Array.txt", "text/plain" );
 
 ### HTML
-#### html string -  [live demo](http://pagedemos.com/sxks39b72aqb/5)
+#### html string -  [live demo](http://pagedemos.com/xg6krr8y3uc7/output/)
     download(document.body.outerHTML, "dlHTML.html", "text/html");
 
-#### html Blob -  [live demo](http://pagedemos.com/sxks39b72aqb/6)
+#### html Blob -  [live demo](http://pagedemos.com/bxehm2fdf3g4/output/)
     download(new Blob(["hello world".bold()]), "dlHtmlBlob.html", "text/html");
 
-#### ajax callback -  [live demo](http://pagedemos.com/sxks39b72aqb/7)
+#### ajax callback -  [live demo](http://pagedemos.com/arr2ym74aw8t/output/)
 (note that callback mode won't work on vanilla ajax or with binary files)
    
     $.ajax({
@@ -76,10 +76,10 @@ It specifies the contents and name of a new file placed in the browser's downloa
 
 
 ### Binary Files
-#### image from URL  -  [live demo](http://pagedemos.com/yvvmxbjrwq7u/)
+#### image from URL  -  [live demo](http://pagedemos.com/yvvmxbjrwq7u/output/)
     download("/diff6.png");
 
-#### Image via ajax for custom filename - [live demo](http://pagedemos.com/v2848zfgwrju/)
+#### Image via ajax for custom filename - [live demo](http://pagedemos.com/v2848zfgwrju/output/)
 	var x=new XMLHttpRequest();
 	x.open( "GET", "/diff6.png" , true);
 	x.responseType="blob";
