@@ -39,7 +39,8 @@
 			ajax;
 			B= B.call ? B.bind(self) : Blob ;
 	  
-
+		a.style.display = 'none'; //avoid flicker on screen
+		
 		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
 			x=[x, m];
 			m=x[0];
