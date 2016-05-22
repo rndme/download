@@ -37,8 +37,6 @@
 			reader;
 			myBlob= myBlob.call ? myBlob.bind(self) : Blob ;
 	  
-		a.style.display = 'none'; //avoid flicker on screen
-		
 		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
 			payload=[payload, mimeType];
 			mimeType=payload[0];
@@ -102,6 +100,7 @@
 				anchor.setAttribute("download", fileName);
 				anchor.className = "download-js-link";
 				anchor.innerHTML = "downloading...";
+				anchor.style.display = "none";
 				document.body.appendChild(anchor);
 				setTimeout(function() {
 					anchor.click();
