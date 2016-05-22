@@ -4,7 +4,7 @@
 // v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
 // v4 adds AMD/UMD, commonJS, and plain browser support
 // v4.1 adds url download capability via solo URL argument (same domain/CORS only)
-// v4.2 adds semantic variable names
+// v4.2 adds semantic variable names, long (over 2MB) dataURL support 
 // https://github.com/rndme/download
 
 (function (root, factory) {
@@ -61,12 +61,18 @@
 		} // end if url?
 
 
-
 		//go ahead and download dataURLs right away
 		if(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(payload)){
-			return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
-				navigator.msSaveBlob(dataUrlToBlob(payload), fileName) :
-				saver(payload) ; // everyone else can save dataURLs un-processed
+		
+			if(payload.length > (1024*1024*1.999) && myBlob !== toString ){
+				payload=dataUrlToBlob(payload);
+				mimeType=payload.type || defaultMime;
+			}else{			
+				return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
+					navigator.msSaveBlob(dataUrlToBlob(payload), fileName) :
+					saver(payload) ; // everyone else can save dataURLs un-processed
+			}
+			
 		}//end if dataURL passed?
 
 		blob = payload instanceof myBlob ?
