@@ -61,7 +61,7 @@
 
 
 		//go ahead and download dataURLs right away
-		if(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(payload)){
+		if(/^data\:[\w+\-]+\/[\w+\-\.]+[,;]/.test(payload)){
 		
 			if(payload.length > (1024*1024*1.999) && myBlob !== toString ){
 				payload=dataUrlToBlob(payload);
