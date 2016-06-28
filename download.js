@@ -112,7 +112,7 @@
 
 			// handle non-a[download] safari as best we can:
 			if(/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
-				url=url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
+				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
 				if(!window.open(url)){ // popup blocked, offer direct download:
 					if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
 				}
