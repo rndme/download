@@ -112,7 +112,7 @@
 
 			// handle non-a[download] safari as best we can:
 			if(/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
-				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
+				if(/^data:/.test(url))	url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
 				if(!window.open(url)){ // popup blocked, offer direct download:
 					if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
 				}
@@ -123,7 +123,7 @@
 			var f = document.createElement("iframe");
 			document.body.appendChild(f);
 
-			if(!winMode){ // force a mime that will download:
+			if(!winMode && /^data:/.test(url)){ // force a mime that will download:
 				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
 			}
 			f.src=url;
