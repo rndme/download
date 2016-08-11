@@ -10,7 +10,7 @@
     "download"
   ],
   "homepage": "http://danml.com/download.html",
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "author": {
     "name": "dandavis",
     "email": "rndme@users.noreply.github.com",
