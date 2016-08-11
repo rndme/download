@@ -1,7 +1,7 @@
 {
   "name": "downloadjs",
   "main": "download.js",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "file downloading using client-side javascript",
   "keywords": [
     "files",
