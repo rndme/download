@@ -1,7 +1,7 @@
 {
   "name": "downloadjs",
   "main": "download.js",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "file downloading using client-side javascript",
   "keywords": [
     "files",
@@ -10,7 +10,7 @@
     "download"
   ],
   "homepage": "http://danml.com/download.html",
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "author": {
     "name": "dandavis",
     "email": "rndme@users.noreply.github.com",
