@@ -119,4 +119,5 @@ You can expect it to work for the vast majority of your users, with some common-
 * 2015 :: converted to amd/commonJS module with browser-friendly fallback
 * 2015 :: 4.1 added direct URL downloading via a single URL argument.
 * 2016 :: 4.2 added large dataURL support, a more semantic codebase, and hidden temp links
+* 2017 :: added support for empty dataURLs
 * 20XX :: ???? Considering Zip, Tar, and other multi-file outputs, Blob.prototype.download option, and more, stay tuned folks.
