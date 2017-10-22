@@ -1,5 +1,5 @@
 # download
-========
+[![CDNJS](https://img.shields.io/cdnjs/v/downloadjs.svg)](https://cdnjs.com/libraries/downloadjs)
 
 ## Summary
 ---------
