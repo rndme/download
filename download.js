@@ -22,17 +22,22 @@
   }
 }(this, function () {
 
-	return function download(data, strOverrideFileName, strFileName, strMimeType) {
+	return function download(data, options) {
+
+        if (options === undefined) options = {};
+        if (options.strFileName === undefined) options.strFileName = '';
+        if (options.strMimeType === undefined) options.strMimeType = '';
+        if (options.strOverrideFileName === undefined) options.strOverrideFileName = '';
 
 		var self = window, // this script is only for browsers anyway...
 			defaultMime = "application/octet-stream", // this default mime also triggers iframe downloads
-			mimeType = strMimeType || defaultMime,
+			mimeType = options.strMimeType || defaultMime,
 			payload = data,
-			url = !strFileName && !strMimeType && payload,
+			url = !options.strFileName && !options.strMimeType && payload,
 			anchor = document.createElement("a"),
 			toString = function(a){return String(a);},
 			myBlob = (self.Blob || self.MozBlob || self.WebKitBlob || toString),
-			fileName = strOverrideFileName || strFileName || "download",
+			fileName = options.strOverrideFileName || options.strFileName || "download",
 			blob,
 			reader;
 			myBlob= myBlob.call ? myBlob.bind(self) : Blob ;
@@ -52,7 +57,7 @@
         		ajax.open( "GET", url, true);
         		ajax.responseType = 'blob';
         		ajax.onload= function(e){
-				  download(e.target.response, strOverrideFileName, '', defaultMime);
+				  download(e.target.response, {strOverrideFileName: options.strOverrideFileName, strMimeType: defaultMime});
 				};
         		setTimeout(function(){ ajax.send();}, 0); // allows setting custom ajax headers using the return:
 			    return ajax;
