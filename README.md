@@ -1,5 +1,8 @@
-# download
-========
+# download 
+
+[![NPM version][npm-image]][npm-url] 
+[![Size][size-image]][size-url] 
+[![License][license-image]][license-url] 
 
 ## Summary
 ---------
@@ -121,3 +124,12 @@ You can expect it to work for the vast majority of your users, with some common-
 * 2016 :: 4.2 added large dataURL support, a more semantic codebase, and hidden temp links
 * 2017 :: added support for empty dataURLs
 * 20XX :: ???? Considering Zip, Tar, and other multi-file outputs, Blob.prototype.download option, and more, stay tuned folks.
+
+
+[MIT license]: http://opensource.org/licenses/MIT
+[npm-image]: https://badge.fury.io/js/downloadjs.svg
+[npm-url]: https://npmjs.org/package/downloadjs
+[license-image]: https://img.shields.io/badge/license-MIT-green.svg
+[license-url]: http://opensource.org/licenses/MIT
+[size-image]: http://img.badgesize.io/rndme/download/master/download.min.js.svg?compression=gzip&label=gzip%20size
+[size-url]: https://unpkg.com/downloadjs
