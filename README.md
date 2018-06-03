@@ -113,7 +113,7 @@ You can expect it to work for the vast majority of your users, with some common-
 
 ## Change Log (v4.1)
 ---------
-* 2008 :: landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
+* 2008 :: landed a FF+Chrome compatible way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 * 2012 :: added named files via a[download], msSaveBlob() for IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 * 2014 :: added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support
 * 2015 :: converted to amd/commonJS module with browser-friendly fallback
