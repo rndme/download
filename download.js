@@ -22,7 +22,7 @@
   }
 }(this, function () {
 
-	return function download(data, strFileName, strMimeType) {
+	return function download(data, strFileName, strMimeType, options) {
 
 		var self = window, // this script is only for browsers anyway...
 			defaultMime = "application/octet-stream", // this default mime also triggers iframe downloads
@@ -36,13 +36,14 @@
 			blob,
 			reader;
 			myBlob= myBlob.call ? myBlob.bind(self) : Blob ;
-	  
+
 		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
 			payload=[payload, mimeType];
 			mimeType=payload[0];
 			payload=payload[1];
 		}
 
+		options = options || {}
 
 		if(url && url.length< 2048){ // if no filename and no mime, assume a url was passed as the only argument
 			fileName = url.split("/").pop().split("?")[0];
@@ -75,7 +76,7 @@
 		}else{//not data url, is it a string with special needs?
 			if(/([\x80-\xff])/.test(payload)){			  
 				var i=0, tempUiArr= new Uint8Array(payload.length), mx=tempUiArr.length;
-				for(i;i<mx;++i) tempUiArr[i]= payload.charCodeAt(i);
+				for(i;i<mx;++i) tempUiArr[i]= payload[i];
 			 	payload=new myBlob([tempUiArr], {type: mimeType});
 			}		  
 		}
@@ -122,6 +123,10 @@
 
 			// handle non-a[download] safari as best we can:
 			if(/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
+				if (options.safariCallback && typeof options.safariCallback === 'function') {
+					options.safariCallback(fileName, strMimeType);
+					return true;
+				}
 				if(/^data:/.test(url))	url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
 				if(!window.open(url)){ // popup blocked, offer direct download:
 					if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
