@@ -87,7 +87,8 @@
 		function dataUrlToBlob(strUrl) {
 			var parts= strUrl.split(/[:;,]/),
 			type= parts[1],
-			decoder= parts[2] == "base64" ? atob : decodeURIComponent,
+			indexDecoder = strUrl.indexOf("charset")>0 ? 3: 2,
+			decoder= parts[indexDecoder] == "base64" ? atob : decodeURIComponent,
 			binData= decoder( parts.pop() ),
 			mx= binData.length,
 			i= 0,
