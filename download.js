@@ -45,7 +45,7 @@
 
 
 		if(url && url.length< 2048){ // if no filename and no mime, assume a url was passed as the only argument
-			fileName = url.split("/").pop().split("?")[0];
+			fileName = url.split("/").pop().split("?")[0]; url = encodeURI(url);
 			anchor.href = url; // assign href prop to temp anchor
 		  	if(anchor.href.indexOf(url) !== -1){ // if the browser determines that it's a potentially valid url path:
         		var ajax=new XMLHttpRequest();
