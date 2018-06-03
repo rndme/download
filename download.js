@@ -1,5 +1,5 @@
-//download.js v4.2, by dandavis; 2008-2016. [MIT] see http://danml.com/download.html for tests/usage
-// v1 landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
+//download.js v4.21, by dandavis; 2008-2018. [MIT] see http://danml.com/download.html for tests/usage
+// v1 landed a FF+Chrome compatible way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 // v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 // v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
 // v4 adds AMD/UMD, commonJS, and plain browser support
@@ -87,7 +87,8 @@
 		function dataUrlToBlob(strUrl) {
 			var parts= strUrl.split(/[:;,]/),
 			type= parts[1],
-			decoder= parts[2] == "base64" ? atob : decodeURIComponent,
+			indexDecoder = strUrl.indexOf("charset")>0 ? 3: 2,
+			decoder= parts[indexDecoder] == "base64" ? atob : decodeURIComponent,
 			binData= decoder( parts.pop() ),
 			mx= binData.length,
 			i= 0,
@@ -106,6 +107,10 @@
 				anchor.className = "download-js-link";
 				anchor.innerHTML = "downloading...";
 				anchor.style.display = "none";
+ 				anchor.addEventListener('click', function(e) {
+ 					e.stopPropagation();
+ 					this.removeEventListener('click', arguments.callee);
+ 				});
 				document.body.appendChild(anchor);
 				setTimeout(function() {
 					anchor.click();
