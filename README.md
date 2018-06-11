@@ -103,7 +103,7 @@ You can expect it to work for the vast majority of your users, with some common-
 * Devices without Blob support won't be able to download Blobs or TypedArrays
 * Legacy devices (no a[download]) support can only download a few hundred kilobytes of data, and can't give the file a custom name.
 * Devices without window.URL support can only download a couple megabytes of data
-* IE versions of 9 and before are NOT supported because the don't support a[download] or dataURL frame locations.
+* IE versions of 9 and before are NOT supported because they don't support a[download] or dataURL frame locations.
 
 
 ## FAQ
