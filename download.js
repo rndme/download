@@ -107,9 +107,9 @@
 				anchor.className = "download-js-link";
 				anchor.innerHTML = "downloading...";
 				anchor.style.display = "none";
- 				anchor.addEventListener('click', function(e) {
+ 				var EL=anchor.addEventListener('click', function(e) {
  					e.stopPropagation();
- 					this.removeEventListener('click', arguments.callee);
+ 					this.removeEventListener('click', EL);
  				});
 				document.body.appendChild(anchor);
 				setTimeout(function() {
