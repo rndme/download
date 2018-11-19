@@ -78,6 +78,12 @@
 				for(i;i<mx;++i) tempUiArr[i]= payload.charCodeAt(i);
 			 	payload=new myBlob([tempUiArr], {type: mimeType});
 			}		  
+			if (!(payload instanceof myBlob)){
+				anchor.href = payload; // assign href prop to temp anchor
+				if(anchor.href.indexOf(payload) !== -1) { // if the browser determines that it's a potentially valid url path:
+					return saver(payload);
+				}
+			}
 		}
 		blob = payload instanceof myBlob ?
 			payload :
