@@ -107,10 +107,11 @@
 				anchor.className = "download-js-link";
 				anchor.innerHTML = "downloading...";
 				anchor.style.display = "none";
- 				anchor.addEventListener('click', function(e) {
+				var callback = function(e) {
  					e.stopPropagation();
- 					this.removeEventListener('click', arguments.callee);
- 				});
+ 					this.removeEventListener('click', callback);
+ 				};
+ 				anchor.addEventListener('click', callback);
 				document.body.appendChild(anchor);
 				setTimeout(function() {
 					anchor.click();
