@@ -85,11 +85,11 @@
 
 
 		function dataUrlToBlob(strUrl) {
-			var parts= strUrl.split(/[:;,]/),
-			type= parts[1],
-			indexDecoder = strUrl.indexOf("charset")>0 ? 3: 2,
-			decoder= parts[indexDecoder] == "base64" ? atob : decodeURIComponent,
-			binData= decoder( parts.pop() ),
+			var firstComma= strUrl.indexOf(','),
+			meta= strUrl.substring(5, firstComma).split(';'),
+			type= meta[0] || 'text/plain',
+			decoder= meta.indexOf("base64") !== -1 ? atob : decodeURIComponent,
+			binData= decoder( strUrl.substring(firstComma + 1) ),
 			mx= binData.length,
 			i= 0,
 			uiArr= new Uint8Array(mx);
