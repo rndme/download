@@ -5,6 +5,7 @@
 [![License][license-image]][license-url] 
 [![CDNJS](https://img.shields.io/cdnjs/v/downloadjs.svg)](https://cdnjs.com/libraries/downloadjs)
 
+>中文文档：[链接](https://github.com/rndme/download/blob/master/README_zh.md)
 
 ## Summary
 ---------
