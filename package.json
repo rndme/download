@@ -16,6 +16,10 @@
     "email": "rndme@users.noreply.github.com",
     "url": "http://danml.com/"
   },
+  "types": "download.d.ts",
+  "exports": {
+    "./package.json":"./package.json"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rndme/download.git"
