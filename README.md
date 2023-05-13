@@ -1,10 +1,40 @@
-# download 
+# deprecated download 
 
-[![NPM version][npm-image]][npm-url] 
-[![Size][size-image]][size-url] 
-[![License][license-image]][license-url] 
-[![CDNJS](https://img.shields.io/cdnjs/v/downloadjs.svg)](https://cdnjs.com/libraries/downloadjs)
+Today you can save files easy and fast in the browser and node
 
+# Browser
+
+```js
+fetch('https://example.com').then(async res=>res.body.pipeTo(await (await showSaveFilePicker({
+  suggestedName: 'Any-suggestedName.txt'
+})).createWritable()));
+```
+
+## Browser Download Implementation
+
+```ts
+const download = (url, suggestedName) => {
+ fetch(url).then(async res=>res.body.pipeTo(await (await showSaveFilePicker({
+  suggestedName // if undefined defaults to filename from the url already
+})).createWritable()));
+}
+```
+
+# Node
+Node 18+ has nativ fetch support
+```ts
+fetch("https://example.com").then(({ body }) =>
+ fs.promises.writeFile("./website-example.com.html", body)))
+```
+
+## Node Implementation
+```ts
+// import or require fs.promises node:fs/promises
+const download = (url,filename) => fetch(url).then(({ body }) =>
+ fs.promises.writeFile(`${filename}`, body)))
+```
+
+### History
 
 ## Summary
 ---------
